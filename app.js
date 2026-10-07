@@ -13,7 +13,8 @@ const state = {
     cardMastered: new Set(),
     timerSeconds: 0,
     timerRunning: false,
-    timerInterval: null
+    timerInterval: null,
+    showAllSolutions: false
 };
 
 // Storage keys
@@ -157,6 +158,9 @@ function setupEvents() {
 
     const resetBtn = el('reset-quiz');
     if (resetBtn) resetBtn.addEventListener('click', () => resetQuiz());
+
+    const toggleAnswersBtn = el('toggle-all-answers');
+    if (toggleAnswersBtn) toggleAnswersBtn.addEventListener('click', toggleAllSolutions);
 
     const timerToggle = el('quiz-timer-toggle');
     if (timerToggle) timerToggle.addEventListener('click', toggleTimer);
@@ -327,10 +331,31 @@ function renderQuiz() {
             if (state.quizFilter === 'bookmarked') filterQuizDisplay();
         }
     });
+
+    // Handle single question solution toggle
+    container.addEventListener('toggle', e => {
+        if (e.target.matches('.question-solution')) {
+            const qId = parseInt(e.target.dataset.question, 10);
+            const q = QUESTIONS.find(item => item.id === qId);
+            if (q) {
+                const correctOpt = el(`option-${q.id}-${q.answer}`);
+                if (correctOpt && !state.graded && !state.showAllSolutions) {
+                    if (e.target.open) {
+                        correctOpt.classList.add('correct-option');
+                    } else {
+                        correctOpt.classList.remove('correct-option');
+                    }
+                }
+            }
+        }
+    }, true);
 }
 
 function renderQuestionCard(q) {
     const isStarred = state.bookmarks.has(q.id);
+    const correctLetter = letters[q.answer];
+    const correctText = q.options[q.answer];
+
     return `
         <article id="question-${q.id}" class="question-card" data-chapter="${q.chapter}">
             <fieldset>
@@ -350,10 +375,35 @@ function renderQuestionCard(q) {
                 </div>
             </fieldset>
             <div class="q-footer">
-                <details class="question-hint">
-                    <summary>💡 ขอคำใบ้</summary>
-                    <p>${escapeHTML(q.hint)}</p>
-                </details>
+                <div class="q-helper-actions">
+                    <details class="question-hint">
+                        <summary>💡 ขอคำใบ้</summary>
+                        <p>${escapeHTML(q.hint)}</p>
+                    </details>
+                    <details class="question-solution" id="solution-${q.id}" data-question="${q.id}">
+                        <summary>👁️ ดูเฉลยและคำอธิบาย</summary>
+                        <div class="solution-content">
+                            <div class="solution-badge">
+                                <span class="badge-icon">✅</span>
+                                <div class="badge-text">
+                                    <span class="badge-label">เฉลยคำตอบที่ถูกต้อง:</span>
+                                    <strong class="badge-answer">ข้อ ${correctLetter}. ${escapeHTML(correctText)}</strong>
+                                </div>
+                            </div>
+                            <div class="solution-explanations">
+                                <span class="exp-title">📋 คำอธิบายและวิเคราะห์แต่ละตัวเลือก:</span>
+                                <ul>
+                                    ${q.feedback.map((f, idx) => `
+                                        <li class="${idx === q.answer ? 'is-correct-explanation' : 'is-wrong-explanation'}">
+                                            <b class="exp-letter">${letters[idx]}.</b>
+                                            <span>${escapeHTML(f)}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </details>
+                </div>
                 <div id="feedback-${q.id}" class="q-feedback" hidden></div>
             </div>
         </article>
@@ -412,7 +462,7 @@ function gradeQuiz() {
                 fbBox.hidden = false;
                 fbBox.innerHTML = `
                     <div class="feedback-heading ${isCorrect ? 'fb-correct' : 'fb-wrong'}">
-                        <strong>${isCorrect ? 'ถูกต้องเยี่ยมมาก! 🎉' : 'ยังไม่ถูกต้อง ❌'}</strong>
+                        <strong>${isCorrect ? 'ถูกต้องเยี่ยมมาก! 🎉' : `ยังไม่ถูกต้อง ❌ (เฉลย: ข้อ ${letters[q.answer]}. ${escapeHTML(q.options[q.answer])})`}</strong>
                     </div>
                     <ul class="feedback-list">
                         ${q.feedback.map((f, idx) => `
@@ -423,6 +473,10 @@ function gradeQuiz() {
                     </ul>
                 `;
             }
+
+            // Auto-open solution details on grading
+            const solDetails = el(`solution-${q.id}`);
+            if (solDetails) solDetails.open = true;
         }
     });
 
@@ -532,6 +586,14 @@ function resetQuiz() {
         if (fb) fb.hidden = true;
     });
 
+    state.showAllSolutions = false;
+    const toggleAnswersBtn = el('toggle-all-answers');
+    if (toggleAnswersBtn) {
+        toggleAnswersBtn.textContent = 'ดูเฉลยทั้งหมด 👁️';
+        toggleAnswersBtn.classList.remove('active');
+    }
+    document.querySelectorAll('.question-solution').forEach(d => d.open = false);
+
     const resBox = el('quiz-result');
     if (resBox) resBox.hidden = true;
 
@@ -540,6 +602,28 @@ function resetQuiz() {
     filterQuizDisplay();
     updateQuizProgress();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAllSolutions() {
+    state.showAllSolutions = !state.showAllSolutions;
+    const btn = el('toggle-all-answers');
+    if (btn) {
+        btn.textContent = state.showAllSolutions ? 'ซ่อนเฉลยทั้งหมด 🙈' : 'ดูเฉลยทั้งหมด 👁️';
+        btn.classList.toggle('active', state.showAllSolutions);
+    }
+    document.querySelectorAll('.question-solution').forEach(details => {
+        details.open = state.showAllSolutions;
+    });
+    QUESTIONS.forEach(q => {
+        const correctOpt = el(`option-${q.id}-${q.answer}`);
+        if (correctOpt) {
+            if (state.showAllSolutions) {
+                correctOpt.classList.add('correct-option');
+            } else if (!state.graded) {
+                correctOpt.classList.remove('correct-option');
+            }
+        }
+    });
 }
 
 // Optional Exam Timer
