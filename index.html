@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d1117">
+    <meta name="description" content="ห้องติวไซเบอร์ระดับพรีเมียม สรุปเข้มสไลด์ 7 บทเรียน (บทที่ 6-12) พร้อมข้อสอบปรนัย 70 ข้อ ข้อสอบอัตนัย 7 ข้อ เครื่องมือคำนวณ Syslog/CVSS และบัตรคำช่วยจำ">
+    <title>Cyber Study Lab Pro • ติวสอบไซเบอร์ 7 บท</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kanit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d1117'/%3E%3Cpath d='M16 4 27 8.5v9c0 6-11 11.5-11 11.5S5 23.5 5 17.5v-9Z' fill='none' stroke='%2300f2fe' stroke-width='2.2'/%3E%3Cpath d='m11 16 3.5 3.5 7.5-8' fill='none' stroke='%234facfe' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+    <a class="skip-link" href="#content">ข้ามไปเนื้อหาหลัก</a>
+
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="#plan" aria-label="Cyber Study Lab Pro หน้าแรก">
+                <span class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2 20 6v6c0 5-8 9-8 9s-8-4-8-9V6Z"/>
+                        <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                </span>
+                <span class="brand-text">
+                    CYBER<strong>PRO</strong>
+                    <span class="brand-badge">STUDY LAB</span>
+                </span>
+            </a>
+
+            <!-- Global Search -->
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="search" id="global-search-input" placeholder="ค้นหาเนื้อหา คำศัพท์ หรือข้อสอบ..." autocomplete="off">
+                </div>
+                <div id="search-results" class="search-dropdown" hidden></div>
+            </div>
+
+            <!-- Exam Countdown Ticket Badge -->
+            <div class="exam-status">
+                <span class="exam-dot"></span>
+                <div class="exam-info">
+                    <span class="exam-label">เตรียมสอบปลายภาค</span>
+                    <strong class="exam-date">7 ตุลาคม 2569</strong>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="workspace">
+        <!-- Main Sidebar -->
+        <aside class="sidebar">
+            <nav class="main-nav" aria-label="เมนูหลัก">
+                <a href="#plan" data-view="plan" class="nav-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                        <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                    </svg>
+                    <span>แผนอ่าน</span>
+                </a>
+                <a href="#learn" data-view="learn" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                        <path d="M6 6h10M6 10h10M6 14h6"/>
+                    </svg>
+                    <span>บทเรียน (7 บท)</span>
+                </a>
+                <a href="#quiz" data-view="quiz" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                    <span>ปรนัย (70 ข้อ)</span>
+                </a>
+                <a href="#essay" data-view="essay" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+                    </svg>
+                    <span>ข้อเขียน (7 ข้อ)</span>
+                </a>
+                <a href="#tools" data-view="tools" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                    <span>เครื่องมือ & คำนวณ</span>
+                </a>
+                <a href="#cards" data-view="cards" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="M6 8h12M6 12h8"/>
+                    </svg>
+                    <span>Flashcards</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main id="content" class="main-content" tabindex="-1">
+
+            <!-- ================= VIEW 1: STUDY PLAN & DASHBOARD ================= -->
+            <section id="view-plan" class="view">
+                <div class="page-head">
+                    <div>
+                        <div class="eyebrow">COMMAND CENTER & STUDY PLAN</div>
+                        <h1>ห้องอ่านหนังสือไซเบอร์</h1>
+                        <p>ติวเข้มเนื้อหา 7 บทเรียน (บทที่ 6-12) ครบถ้วนตามสไลด์ทางการ พร้อมคลังข้อสอบและเครื่องมือคำนวณ</p>
+                    </div>
+                    <div class="status-pill">สอบ 7 ต.ค. 2569</div>
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="overview-stats">
+                    <div class="stat-card">
+                        <span class="stat-label">เนื้อหาบทเรียน</span>
+                        <strong class="stat-value">7 <small>บท (298 หน้า)</small></strong>
+                        <span class="stat-sub">สไลด์ 06 ถึง 12</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">ข้อสอบปรนัย</span>
+                        <strong class="stat-value">70 <small>ข้อ</small></strong>
+                        <span class="stat-sub">บทละ 10 ข้อ มีเฉลยละเอียด</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">ข้อสอบข้อเขียน</span>
+                        <strong class="stat-value">7 <small>สถานการณ์</small></strong>
+                        <span class="stat-sub">พร้อมแนวตอบและเกณฑ์ Rubric</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">บัตรคำช่วยจำ</span>
+                        <strong class="stat-value">32 <small>ใบ</small></strong>
+                        <span class="stat-sub">คัดเฉพาะจุดที่ชอบออกสอบ</span>
+                    </div>
+                </div>
+
+                <div class="study-dashboard">
+                    <div class="dashboard-main">
+                        <!-- Hero Callout -->
+                        <div class="start-panel">
+                            <div class="start-info">
+                                <span class="soft-label">เริ่มอ่านวันนี้</span>
+                                <h2>เข้าใจพื้นฐาน สู่การวิเคราะห์ระบบความปลอดภัย</h2>
+                                <p>เริ่มต้นจากภัยคุกคามและการโจมตี (บท 6) สู่การตรวจสอบเครือข่าย วิทยาการรหัสลับ และกรอบงานมาตรฐาน</p>
+                            </div>
+                            <div class="start-actions">
+                                <a class="button primary" href="#learn/6">เริ่มอ่านบทที่ 6 →</a>
+                                <a class="button secondary" href="#quiz">ทดสอบความรู้ 70 ข้อ →</a>
+                            </div>
+                        </div>
+
+                        <!-- Chapter Selector Grid -->
+                        <div class="section-title">
+                            <h2>เลือกบทเรียนเพื่อเริ่มติว</h2>
+                            <span class="muted">7 บทเรียน · ภาษาไทยเข้าใจง่าย พร้อมอ้างอิงหน้าสไลด์</span>
+                        </div>
+                        <div id="chapter-grid" class="chapter-grid"></div>
+
+                        <!-- 4-Day Study Plan -->
+                        <div class="section-title">
+                            <h2>แผนอ่าน 4 วันก่อนสอบ</h2>
+                            <span class="muted">แบ่งเวลาเป็นช่วงสั้นๆ ช่วยให้จำแม่น ไม่ล้า</span>
+                        </div>
+                        <div class="days-grid">
+                            <article class="day-card">
+                                <div class="day-number">D1<span>DAY</span></div>
+                                <div class="day-content">
+                                    <h3>ภัยคุกคาม มัลแวร์ และผู้โจมตี</h3>
+                                    <p>บท 6 ภัยคุกคามทั่วไป · บท 7 ผู้โจมตีและเครื่องมือ</p>
+                                    <div class="day-goal">🎯 ต้องแยกได้: Virus/Worm/Trojan, 4 การจัดการความเสี่ยง, IOC vs IOA</div>
+                                </div>
+                            </article>
+                            <article class="day-card">
+                                <div class="day-number">D2<span>DAY</span></div>
+                                <div class="day-content">
+                                    <h3>การเฝ้าระวังและหลักฐานดิจิทัล</h3>
+                                    <p>บท 8 ตรวจเครือข่าย · บท 11 ข้อมูลความปลอดภัยและข่าวกรอง</p>
+                                    <div class="day-goal">🎯 ต้องแยกได้: TAP/SPAN, IDS/IPS, SIEM/SOAR, สูตรคำนวณ Syslog PRI</div>
+                                </div>
+                            </article>
+                            <article class="day-card">
+                                <div class="day-number">D3<span>DAY</span></div>
+                                <div class="day-content">
+                                    <h3>การเข้ารหัสและประเมินช่องโหว่</h3>
+                                    <p>บท 9 รหัสลับและ PKI · บท 10 การจัดการช่องโหว่</p>
+                                    <div class="day-goal">🎯 ต้องแยกได้: Public/Private Key บทบาทส่งข้อความ vs ลงนาม, เกณฑ์ CVSS v3.1</div>
+                                </div>
+                            </article>
+                            <article class="day-card">
+                                <div class="day-number">D4<span>DAY</span></div>
+                                <div class="day-content">
+                                    <h3>กรอบงานมาตรฐานและ Mock Exam</h3>
+                                    <p>บท 12 กรอบงานไซเบอร์ · ตะลุยโจทย์ปรนัย 70 ข้อและข้อเขียน 7 ข้อ</p>
+                                    <div class="day-goal">🎯 ต้องตอบได้: 6 Functions NIST CSF 2.0, ISO 27001/2, PCI DSS, HIPAA</div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- Study Method Tips Accordion -->
+                        <details class="panel study-method-panel">
+                            <summary>💡 แต่ละวันแบ่งเวลาอ่านอย่างไรให้จำแม่นและไม่ล้า? (Active Recall & Pomodoro)</summary>
+                            <div id="study-method" class="study-method-body"></div>
+                        </details>
+                    </div>
+
+                    <!-- Sidebar Panel in Plan View -->
+                    <aside class="dashboard-side">
+                        <div class="exam-panel">
+                            <div class="exam-panel-head">
+                                <span>วันสอบของคุณ</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                    <path d="M16 2v4M8 2v4M3 10h18"/>
+                                </svg>
+                            </div>
+                            <div class="exam-ticket">
+                                <span class="ticket-course">CYBER SECURITY</span>
+                                <div class="ticket-date">
+                                    <strong>07</strong>
+                                    <div>ตุลาคม<br><b>2569</b></div>
+                                </div>
+                                <div class="ticket-line"></div>
+                                <div class="ticket-meta">
+                                    <span>ขอบเขต<br><b>บทที่ 6 – 12</b></span>
+                                    <span>เป้าหมาย<br><b>A / คะแนนเต็ม</b></span>
+                                </div>
+                            </div>
+                            <p class="ticket-quote">“อ่านรอบแรกให้เข้าใจภาพรวม → ปิดสรุปแล้วลองอธิบายเอง → ทำโจทย์เพื่อค้นหาจุดที่ยังสับสน”</p>
+                        </div>
+
+                        <!-- Quick Practice Panel -->
+                        <div class="practice-panel">
+                            <div class="section-title">
+                                <h2>ศูนย์ฝึกฝนข้อสอบ</h2>
+                                <span class="soft-label">เฉลยครบทุกข้อ</span>
+                            </div>
+                            <a href="#quiz" class="practice-link">
+                                <span class="practice-icon">70</span>
+                                <div>
+                                    <strong>ข้อสอบปรนัย (MCQ)</strong>
+                                    <small>ตรวจคะแนนและแยกดูข้อที่ผิดได้ทันที</small>
+                                </div>
+                            </a>
+                            <a href="#essay" class="practice-link">
+                                <span class="practice-icon">07</span>
+                                <div>
+                                    <strong>ข้อสอบข้อเขียน (Essay)</strong>
+                                    <small>จำลองสถานการณ์พร้อมเฉลยและเกณฑ์ Rubric</small>
+                                </div>
+                            </a>
+                            <a href="#tools" class="practice-link">
+                                <span class="practice-icon">🛠️</span>
+                                <div>
+                                    <strong>เครื่องมือ & คำนวณ</strong>
+                                    <small>โปรแกรมคำนวณ Syslog PRI, CVSS และ 5-Tuple</small>
+                                </div>
+                            </a>
+                            <a href="#cards" class="practice-link">
+                                <span class="practice-icon">🃏</span>
+                                <div>
+                                    <strong>Flashcards ช่วยจำ</strong>
+                                    <small>32 บัตรคำสรุปจุดจำด่วนก่อนเดินเข้าห้องสอบ</small>
+                                </div>
+                            </a>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 2: LESSONS ================= -->
+            <section id="view-learn" class="view" hidden>
+                <div class="page-head">
+                    <div>
+                        <div class="eyebrow">COMPREHENSIVE THAI LESSONS</div>
+                        <h1>บทเรียนภาษาไทย</h1>
+                        <p>อธิบายอย่างละเอียด หัวข้อต่อหัวข้อ พร้อมตัวอย่างจริงและหน้าสไลด์อ้างอิง</p>
+                    </div>
+                </div>
+
+                <!-- Chapter Tabs -->
+                <nav id="chapter-nav" class="chapter-nav" aria-label="เลือกบทเรียน"></nav>
+
+                <!-- Reading Mode Toolbar -->
+                <div class="reading-toolbar">
+                    <div class="reading-modes" role="group" aria-label="ระดับความละเอียด">
+                        <button type="button" class="mode-btn active" data-reading-mode="full">📖 เรียนละเอียด (Full Lesson)</button>
+                        <button type="button" class="mode-btn" data-reading-mode="quick">⚡ ทวนก่อนสอบ (Quick Review)</button>
+                    </div>
+                    <a id="source-slides" class="button secondary" target="_blank" rel="noopener">📄 เปิดไฟล์สไลด์ต้นฉบับ (PDF)</a>
+                </div>
+
+                <!-- Lesson Content Area -->
+                <div id="lesson-content" class="lesson-content-area"></div>
+
+                <!-- Lesson Footer -->
+                <div class="lesson-footer">
+                    <a class="button secondary" href="#quiz">ไปฝึกทำข้อสอบบทนี้ →</a>
+                    <button class="button primary" id="next-chapter">อ่านบทถัดไป →</button>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 3: QUIZ (70 MCQs) ================= -->
+            <section id="view-quiz" class="view" hidden>
+                <div class="page-head">
+                    <div>
+                        <div class="eyebrow">PRACTICE EXAMINATION</div>
+                        <h1>ข้อสอบปรนัย 70 ข้อ</h1>
+                        <p>บทละ 10 ข้อ ครบทั้ง 7 บทเรียน (บท 6 ถึง 12) พร้อมเฉลยละเอียดทุกตัวเลือกและคำใบ้</p>
+                    </div>
+                </div>
+
+                <!-- Quiz Toolbar -->
+                <div class="quiz-toolbar panel">
+                    <div class="quiz-status-row">
+                        <div class="progress-info">
+                            <strong id="answered-count">ตอบแล้ว 0 / 70</strong>
+                            <span id="quiz-timer-display" class="timer-badge">⏱️ 00:00</span>
+                        </div>
+                        <div class="quiz-actions">
+                            <button class="button small secondary" id="quiz-timer-toggle">เริ่มจับเวลา ▶️</button>
+                            <button class="button primary" id="grade-quiz">ตรวจคะแนน 🚀</button>
+                            <button class="button secondary" id="reset-quiz">ทำใหม่ 🔄</button>
+                        </div>
+                    </div>
+                    <progress id="quiz-progress" max="70" value="0" aria-label="จำนวนข้อที่ตอบแล้ว"></progress>
+                    <p class="small muted">💡 คำตอบจะถูกบันทึกอัตโนมัติในเบราว์เซอร์ ไม่ต้องกลัวคำตอบหายเมื่อรีเฟรชหน้าเว็บ</p>
+                </div>
+
+                <!-- Quiz Chapter Jump Filters -->
+                <nav id="quiz-jumps" class="quiz-filter-bar" aria-label="กรองข้อสอบตามบท"></nav>
+
+                <!-- Result Scoreboard (Hidden until graded) -->
+                <div id="quiz-result" class="quiz-result-panel" hidden tabindex="-1"></div>
+
+                <!-- Questions Container -->
+                <div id="quiz-questions" class="quiz-questions-list"></div>
+            </section>
+
+            <!-- ================= VIEW 4: ESSAYS ================= -->
+            <section id="view-essay" class="view" hidden>
+                <div class="page-head">
+                    <div>
+                        <div class="eyebrow">SCENARIO-BASED ESSAY QUESTIONS</div>
+                        <h1>ข้อสอบข้อเขียน 7 สถานการณ์</h1>
+                        <p>ครอบคลุม 7 บทเรียนหลัก ฝึกอธิบายด้วยคำของตัวเองก่อนเปิดดูแนวตอบและเกณฑ์ตรวจ (Rubric)</p>
+                    </div>
+                </div>
+
+                <div class="essay-tip panel">
+                    <strong>💡 โครงสร้างการเขียนตอบข้อสอบไซเบอร์ให้ได้คะแนนเต็ม:</strong>
+                    <p>1. นิยาม/ความหมายหลัก → 2. กลไกการทำงานหรือการเปรียบเทียบจุดต่าง → 3. ยกตัวอย่างจริงจากเครือข่าย → 4. ผลกระทบหรือแนวทางแก้ไข</p>
+                    <small>คำตอบที่คุณพิมพ์จะถูกบันทึกไว้ในเบราว์เซอร์นี้โดยอัตโนมัติ สามารถกลับมาทบทวนได้ตลอดเวลา</small>
+                </div>
+
+                <div id="essay-questions" class="essay-questions-list"></div>
+            </section>
+
+            <!-- ================= VIEW 5: INTERACTIVE TOOLS ================= -->
+            <section id="view-tools" class="view" hidden>
+                <div class="page-head">
+                    <div>
+                        <div class="eyebrow">INTERACTIVE LAB CALCULATORS</div>
+                        <h1>เครื่องมือและโปรแกรมคำนวณความปลอดภัย</h1>
+                        <p>ทดลองคำนวณค่าจริงเพื่อสร้างความเข้าใจเชิงลึกสำหรับทำข้อสอบคำนวณ</p>
+                    </div>
+                </div>
+
+                <div class="tools-grid">
+                    <!-- Tool 1: Syslog PRI Calculator -->
+                    <div class="tool-panel">
+                        <div class="tool-head">
+                            <h3>🧮 1. โปรแกรมคำนวณและถอดรหัส Syslog PRI</h3>
+                            <span class="tool-badge">บทที่ 11</span>
+                        </div>
+                        <p class="tool-desc">สูตร: <code>PRI = (Facility × 8) + Severity</code></p>
+                        
+                        <div class="calc-section">
+                            <h4>คำนวณไปข้างหน้า (Forward Calculator):</h4>
+                            <div class="form-row">
+                                <label for="syslog-facility">Facility (แหล่งกำเนิด):</label>
+                                <select id="syslog-facility">
+                                    <option value="0">0: kernel messages</option>
+                                    <option value="1">1: user-level messages</option>
+                                    <option value="2">2: mail system</option>
+                                    <option value="3">3: system daemons</option>
+                                    <option value="4" selected>4: security/authorization (auth)</option>
+                                    <option value="5">5: messages generated internally by syslogd</option>
+                                    <option value="10">10: security/authorization (authpriv)</option>
+                                    <option value="16">16: local0</option>
+                                    <option value="17">17: local1</option>
+                                    <option value="20">20: local4</option>
+                                    <option value="23">23: local7</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <label for="syslog-severity">Severity (ความร้ายแรง 0–7):</label>
+                                <select id="syslog-severity">
+                                    <option value="0">0: Emergency (ระบบใช้งานไม่ได้เลย - ร้ายแรงสูงสุด)</option>
+                                    <option value="1">1: Alert (ต้องแก้ไขทันที)</option>
+                                    <option value="2">2: Critical (ภาวะวิกฤต)</option>
+                                    <option value="3" selected>3: Error (ข้อผิดพลาด)</option>
+                                    <option value="4">4: Warning (คำเตือน)</option>
+                                    <option value="5">5: Notice (ควรสังเกต)</option>
+                                    <option value="6">6: Informational (ข้อมูลทั่วไป)</option>
+                                    <option value="7">7: Debug (ดีบัก - ร้ายแรงน้อยสุด)</option>
+                                </select>
+                            </div>
+                            <div id="syslog-forward-result" class="calc-result-box"></div>
+                        </div>
+
+                        <div class="calc-section">
+                            <h4>ถอดรหัสย้อนกลับ (Reverse Decoder):</h4>
+                            <p class="small muted">นำค่า PRI มาหารด้วย 8 ผลหารคือ Facility และเศษที่เหลือคือ Severity</p>
+                            <div class="form-row">
+                                <label for="syslog-reverse-input">ใส่ตัวเลข PRI (เช่น 35, 82, 165):</label>
+                                <input type="number" id="syslog-reverse-input" value="82" min="0" max="191">
+                            </div>
+                            <div id="syslog-reverse-result" class="calc-result-box"></div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 2: CVSS v3.1 Base Score Calculator -->
+                    <div class="tool-panel">
+                        <div class="tool-head">
+                            <h3>🎯 2. เครื่องมือคำนวณคะแนน CVSS v3.1</h3>
+                            <span class="tool-badge">บทที่ 10</span>
+                        </div>
+                        <p class="tool-desc">ทดลองเลือกพารามิเตอร์ของ Base Metric เพื่อดูคะแนนและความรุนแรงแบบเรียลไทม์</p>
+                        
+                        <form id="cvss-calculator-form">
+                            <div class="cvss-metric-grid">
+                                <div class="metric-item">
+                                    <label>Attack Vector (AV):</label>
+                                    <select name="cvss-av">
+                                        <option value="N" selected>Network (N: อินเทอร์เน็ต)</option>
+                                        <option value="A">Adjacent (A: เครือข่ายใกล้เคียง)</option>
+                                        <option value="L">Local (L: เข้าถึงเครื่องก่อน)</option>
+                                        <option value="P">Physical (P: หน้าเครื่องจริง)</option>
+                                    </select>
+                                </div>
+                                <div class="metric-item">
+                                    <label>Attack Complexity (AC):</label>
+                                    <select name="cvss-ac">
+                                        <option value="L" selected>Low (L: โจมตีง่าย)</option>
+                                        <option value="H">High (H: ซับซ้อนสูง)</option>
+                                    </select>
+                                </div>
+                                <div class="metric-item">
+                                    <label>Privileges Required (PR):</label>
+                                    <select name="cvss-pr">
+                                        <option value="N" selected>None (N: ไม่ต้องมีสิทธิ์)</option>
+                                        <option value="L">Low (L: สิทธิ์ผู้ใช้ทั่วไป)</option>
+                                        <option value="H">High (H: สิทธิ์แอดมิน)</option>
+                                    </select>
+                                </div>
+                                <div class="metric-item">
+                                    <label>User Interaction (UI):</label>
+                                    <select name="cvss-ui">
+                                        <option value="N" selected>None (N: ไม่ต้องให้ผู้ใช้กด)</option>
+                                        <option value="R">Required (R: ต้องล่อให้กด)</option>
+                                    </select>
+                                </div>
+                                <div class="metric-item">
+                                    <label>Scope (S):</label>
+                                    <select name="cvss-s">
+                                        <option value="U" selected>Unchanged (U: ไม่ลามข้ามระบบ)</option>
+                                        <option value="C">Changed (C: กระทบข้ามส่วนประกอบ)</option>
+                                    </select>
+                                </div>
+                                <div class="metric-item">
+                                    <label>Confidentiality (C):</label>
+                                    <select name="cvss-c">
+                                        <option value="H" selected>High (H: ข้อมูลรั่วไหลหมด)</option>
+                                        <option value="L">Low (L: รั่วไหลบางส่วน)</option>
+                                        <option value="N">None (N: ไม่กระทบ)</option>
+                                    </select>
+                                </div>
+                                <div class="metric-item">
+                                    <label>Integrity (I):</label>
+                                    <select name="cvss-i">
+                                        <option value="H" selected>High (H: แก้ไขข้อมูลได้ทั้งหมด)</option>
+                                        <option value="L">Low (L: แก้ไขได้บางส่วน)</option>
+                                        <option value="N">None (N: ไม่กระทบ)</option>
+                                    </select>
+                                </div>
+                                <div class="metric-item">
+                                    <label>Availability (A):</label>
+                                    <select name="cvss-a">
+                                        <option value="H" selected>High (H: ระบบหยุดทำงานสิ้นเชิง)</option>
+                                        <option value="L">Low (L: ชะงักบางส่วน)</option>
+                                        <option value="N">None (N: ไม่กระทบ)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="cvss-result-card">
+                            <div class="cvss-score-large">
+                                <span id="cvss-score">9.8</span>
+                                <small>/ 10.0</small>
+                            </div>
+                            <div class="cvss-rating-meta">
+                                <span id="cvss-rating" class="cvss-rating-pill badge-crit">Critical</span>
+                                <code id="cvss-vector">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 3: Cryptography Flow Simulator -->
+                    <div class="tool-panel full-width">
+                        <div class="tool-head">
+                            <h3>🔐 3. แบบจำลองขั้นตอนการเข้ารหัสและลงนามดิจิทัล (Crypto Flow Simulator)</h3>
+                            <span class="tool-badge">บทที่ 9</span>
+                        </div>
+                        <div class="form-row">
+                            <label for="crypto-scenario">เลือกสถานการณ์ที่ต้องการจำลอง:</label>
+                            <select id="crypto-scenario">
+                                <option value="confidentiality">1. ส่งข้อความลับถึง Bob (Confidentiality)</option>
+                                <option value="signature">2. Alice ลงนามส่งเอกสารถึง Bob (Digital Signature)</option>
+                                <option value="hybrid">3. การสื่อสารแบบผสม (Hybrid Encryption: HTTPS / TLS)</option>
+                            </select>
+                        </div>
+                        <div id="crypto-viz" class="crypto-viz-container"></div>
+                    </div>
+
+                    <!-- Tool 4: 5-Tuple Network Packet Inspector -->
+                    <div class="tool-panel full-width">
+                        <div class="tool-head">
+                            <h3>🌐 4. เครื่องมือวิเคราะห์ 5-Tuple ในทราฟฟิกเครือข่าย</h3>
+                            <span class="tool-badge">บทที่ 11</span>
+                        </div>
+                        <div class="form-row">
+                            <label for="tuple-presets">เลือกรูปแบบทราฟฟิกจำลอง:</label>
+                            <select id="tuple-presets">
+                                <option value="web">1. ทราฟฟิกเรียกดูเว็บปกติ (HTTPS Request)</option>
+                                <option value="dns">2. การสอบถามชื่อโดเมน (DNS Query)</option>
+                                <option value="c2">3. สัญญาณเตือนภัย: การติดต่อ C2 Server ของมัลแวร์</option>
+                            </select>
+                        </div>
+                        <div id="tuple-display" class="tuple-display-container"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= VIEW 6: FLASHCARDS ================= -->
+            <section id="view-cards" class="view" hidden>
+                <div class="page-head">
+                    <div>
+                        <div class="eyebrow">MEMORY DRILL CARDS</div>
+                        <h1>บัตรคำช่วยจำ (Flashcards)</h1>
+                        <p>32 บัตรคำสรุปประเด็นสำคัญสำหรับทบทวนและจำก่อนเดินเข้าห้องสอบ</p>
+                    </div>
+                </div>
+
+                <div class="flashcards-wrapper">
+                    <div class="flashcard-toolbar">
+                        <span id="card-counter" class="card-counter">ใบที่ 1 / 32</span>
+                        <button class="button small secondary" id="card-reset">เริ่มใหม่ทั้งหมด 🔄</button>
+                    </div>
+
+                    <!-- 3D Card Display -->
+                    <div class="flashcard-container">
+                        <div id="flashcard-display" class="flashcard-card"></div>
+                    </div>
+
+                    <div class="flashcard-controls">
+                        <button class="button secondary" id="card-prev">← ก่อนหน้า</button>
+                        <button class="button primary" id="card-flip">พลิกบัตร 🔄</button>
+                        <button class="button secondary" id="card-next">ถัดไป →</button>
+                        <button class="button success" id="card-master">ทำเครื่องหมายว่าจำได้ ✨</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="site-footer">
+                <div class="footer-inner">
+                    <span class="footer-brand">CYBER STUDY LAB PRO</span>
+                    <p>รวบรวมและเรียบเรียงอย่างละเอียดจากสไลด์ 7 ชุด (บทที่ 6 ถึง 12) เพื่อการทบทวนสอบปลายภาคอย่างมั่นใจ</p>
+                    <a href="#plan" class="footer-link">กลับสู่หน้าแผนอ่าน ↑</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="lessons.js" defer></script>
+    <script src="full-lessons.js" defer></script>
+    <script src="questions.js" defer></script>
+    <script src="tools.js" defer></script>
+    <script src="app.js" defer></script>
+</body>
+</html>

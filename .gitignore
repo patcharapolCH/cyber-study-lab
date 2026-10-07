@@ -1,0 +1,23 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Temporary and build artifacts
+*.log
+*.tmp
+__pycache__/
+*.pyc
+
+# Binary files / installers
+*.exe
+*.msi
+*.zip
+*.tar.gz
+*.iso
